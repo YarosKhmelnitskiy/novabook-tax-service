@@ -1,0 +1,63 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.15/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "javascript": {
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    },
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      },
+      "suspicious": {
+        "noConsole": "error"
+      },
+      "style": {
+        "useBlockStatements": "error",
+        "useImportType": "off",
+        "useNamingConvention": {
+          "level": "error",
+          "options": {
+            "strictCase": false,
+            "conventions": [
+              { "selector": { "kind": "interface" }, "match": "I(.+)", "formats": ["PascalCase"] },
+              { "selector": { "kind": "enum" }, "match": "E(.+)", "formats": ["PascalCase"] },
+              { "selector": { "kind": "enumMember" }, "formats": ["CONSTANT_CASE"] },
+              { "selector": { "kind": "typeAlias" }, "match": "T(.+)", "formats": ["PascalCase"] }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}

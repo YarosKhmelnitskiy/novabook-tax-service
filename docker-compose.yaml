@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: novabook
+      POSTGRES_PASSWORD: novabook
+      POSTGRES_DB: novabook
+    ports:
+      - '5434:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U novabook -d novabook']
+      interval: 2s
+      timeout: 3s
+      retries: 15
+
+  app:
+    build: .
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://novabook:novabook@db:5432/novabook
+      LOG_LEVEL: info
+      SHUTDOWN_DRAIN_MS: 5000
+    ports:
+      - '3000:3000'
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:

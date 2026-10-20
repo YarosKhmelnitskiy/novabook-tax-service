@@ -1,0 +1,47 @@
+{
+  "name": "novabook-tax-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ingests sales and tax payment events and answers the tax position at any point in time",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=24.13.0"
+  },
+  "packageManager": "pnpm@12.14.0",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node --enable-source-maps dist/bootstrap.js",
+    "start:dev": "node --watch -r ts-node/register src/bootstrap.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "test": "node -r ts-node/register -r reflect-metadata --test 'src/**/!(*.int).spec.ts'",
+    "test:int": "node -r ts-node/register -r reflect-metadata --test 'src/**/*.int.spec.ts'",
+    "test:e2e": "node -r ts-node/register -r reflect-metadata --test 'test/**/*.e2e.spec.ts'"
+  },
+  "dependencies": {
+    "@nestjs/common": "11.2.7",
+    "@nestjs/core": "11.2.7",
+    "@nestjs/platform-express": "11.2.7",
+    "class-transformer": "0.5.1",
+    "class-validator": "0.15.1",
+    "kysely": "0.28.18",
+    "nestjs-pino": "5.3.1",
+    "pg": "8.23.1",
+    "pino": "10.4.0",
+    "pino-http": "11.0.0",
+    "prom-client": "15.1.3",
+    "reflect-metadata": "0.2.2",
+    "rxjs": "7.8.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@types/express": "5.0.6",
+    "@types/node": "24.19.2",
+    "@types/pg": "8.23.1",
+    "@types/supertest": "7.2.1",
+    "supertest": "7.3.1",
+    "ts-node": "10.9.2",
+    "typescript": "5.9.3"
+  }
+}
